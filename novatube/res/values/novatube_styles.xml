@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NovaTube : thème par défaut (remplace « Teal » de SmartTube). Copie des styles d'origine + fond étoilé et lecteur rose. -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="App.Theme.Leanback.Player" parent="Theme.Leanback">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="shelfBackground">@color/shelf_background_dark</item>
+        <item name="cardDefaultBackground">@color/card_default_background_dark</item>
+        <item name="cardSelectedBackground">@color/card_selected_background_white</item>
+        <item name="cardProgressStyle">@style/ProgressBarHorizontal.NovaTube</item>
+        <item name="android:colorAccent" tools:targetApi="21">@color/nt_violet</item>
+        <item name="playbackProgressPrimaryColor">@color/nt_pink</item>
+        <item name="playbackProgressSecondaryColor">@color/nt_pink_dim</item>
+        <item name="playbackControlsIconHighlightColor">@color/nt_pink</item>
+        <item name="itemsVerticalGridStyle">@style/GridViewStyle</item>
+        <item name="rowHorizontalGridStyle">@style/RowViewStyle</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item tools:targetApi="19" name="android:windowTranslucentNavigation">true</item>
+        <item tools:targetApi="18" name="android:windowOverscan">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="App.Theme.Leanback.Browse" parent="Theme.Leanback.Browse">
+        <item name="android:windowBackground">@drawable/nt_background</item>
+        <item name="brandColor">@color/fastlane_background_dark</item>
+        <item name="brandAccentColor">@color/nt_violet</item>
+        <item name="shelfBackground">@drawable/nt_background</item>
+        <item name="cardDefaultBackground">@color/card_default_background_dark</item>
+        <item name="cardSelectedBackground">@color/card_selected_background_white</item>
+        <item name="cardProgressStyle">@style/ProgressBarHorizontal.NovaTube</item>
+        <item name="appLogo">@mipmap/app_logo</item>
+        <item name="android:colorAccent" tools:targetApi="21">@color/nt_violet</item>
+        <item name="itemsVerticalGridStyle">@style/GridViewStyle</item>
+        <item name="rowHorizontalGridStyle">@style/RowViewStyle</item>
+        <item name="headersVerticalGridStyle">@style/BrowseHeaderStyle</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item tools:targetApi="19" name="android:windowTranslucentNavigation">true</item>
+        <item tools:targetApi="18" name="android:windowOverscan">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <!-- Barre « déjà vu » sous les vignettes : dégradé violet → rose -->
+    <style name="ProgressBarHorizontal.NovaTube" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/nt_progress</item>
+    </style>
+</resources>

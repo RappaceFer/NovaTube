@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NovaTube © 2026 Rappace — palette de la famille NovaTV (bleu nuit, dégradé bleu → violet → rose) -->
+<resources>
+    <color name="nt_bg">#060914</color>
+    <color name="nt_bg2">#0B1026</color>
+    <color name="nt_surface">#121A38</color>
+    <color name="nt_surface2">#1A2350</color>
+    <color name="nt_blue">#6F9BFF</color>
+    <color name="nt_violet">#A46CFF</color>
+    <color name="nt_violet_dark">#6E47D6</color>
+    <color name="nt_violet_light">#DCCFFF</color>
+    <color name="nt_pink">#FF5C9A</color>
+    <color name="nt_pink_dim">#80FF5C9A</color>
+    <color name="nt_text">#EEF1FF</color>
+
+    <!-- Thème par défaut de SmartTube (« Teal ») repeint aux couleurs NovaTube -->
+    <color name="fastlane_background">@color/nt_violet</color>
+    <color name="fastlane_background_dark">@color/nt_bg2</color>
+    <color name="shelf_background">@color/nt_bg2</color>
+    <color name="shelf_background_dark">@color/nt_bg</color>
+    <color name="search_opaque">@color/nt_violet</color>
+    <color name="card_default_background">@color/nt_violet</color>
+    <color name="card_default_background_dark">@color/nt_surface</color>
+    <color name="card_selected_background_white">#FFFFFF</color>
+    <color name="icon_background">@color/nt_surface2</color>
+    <color name="primary">@color/nt_violet</color>
+    <color name="primary_dark">@color/nt_violet_dark</color>
+    <color name="primary_light">@color/nt_violet_light</color>
+
+    <!-- Boutons ronds (recherche, comptes…) -->
+    <color name="orb_color">@color/nt_surface2</color>
+    <color name="orb_bright_color">@color/nt_violet</color>
+    <color name="orb_icon_color">#FFFFFF</color>
+
+    <!-- Lecteur : barre de progression rose (clin d'œil YouTube), boutons nets -->
+    <color name="lb_playback_progress_color_no_theme">@color/nt_pink</color>
+    <color name="lb_control_button_color">#C8EEF1FF</color>
+</resources>

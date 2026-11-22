@@ -1,0 +1,87 @@
+diff --git a/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/app/presenters/dialogs/BridgePresenter.java b/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/app/presenters/dialogs/BridgePresenter.java
+index 800f88aac..dab1f01ca 100644
+--- a/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/app/presenters/dialogs/BridgePresenter.java
++++ b/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/app/presenters/dialogs/BridgePresenter.java
+@@ -76,6 +76,12 @@ abstract class BridgePresenter extends BasePresenter<Void> implements MotherActi
+     }
+ 
+     public void runBridgeInstaller(boolean force) {
++        // NovaTube: never download and install an APK built elsewhere (bridge apps come from the upstream developer)
++        if (true) {
++            onFinish();
++            return;
++        }
++
+         mForceInstall = force;
+ 
+         if (!checkLauncher()) {
+diff --git a/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/app/presenters/settings/AboutSettingsPresenter.java b/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/app/presenters/settings/AboutSettingsPresenter.java
+index 0d9162bf9..9e5cddb85 100644
+--- a/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/app/presenters/settings/AboutSettingsPresenter.java
++++ b/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/app/presenters/settings/AboutSettingsPresenter.java
+@@ -44,15 +44,24 @@ public class AboutSettingsPresenter extends BasePresenter<Void> {
+ 
+         String country = LocaleUtility.getCurrentLocale(getContext()).getCountry();
+ 
+-        appendUpdateCheckButton(settingsPresenter);
++        appendNovaTubeCredits(settingsPresenter);
+ 
+-        appendAutoUpdateSwitch(settingsPresenter);
++        // NovaTube: no update server and no external APK (bridge) - updates come from the NovaTube GitHub page
++        boolean hasUpdateServer = getContext().getResources().getStringArray(R.array.update_urls).length > 0;
++
++        if (hasUpdateServer) {
++            appendUpdateCheckButton(settingsPresenter);
++
++            appendAutoUpdateSwitch(settingsPresenter);
++        }
+ 
+         appendUpdateChangelogButton(settingsPresenter);
+ 
+-        appendUpdateSource(settingsPresenter);
++        if (hasUpdateServer) {
++            appendUpdateSource(settingsPresenter);
+ 
+-        appendInstallBridge(settingsPresenter);
++            appendInstallBridge(settingsPresenter);
++        }
+ 
+         if (!Helpers.equalsAny(country, "RU", "UA")) {
+             appendDonation(settingsPresenter);
+@@ -63,6 +72,22 @@ public class AboutSettingsPresenter extends BasePresenter<Void> {
+         settingsPresenter.showDialog(mainTitle);
+     }
+ 
++    /**
++     * NovaTube: who made this build and what it is based on (SmartTube by Yuriy Liskov, free software).
++     */
++    private void appendNovaTubeCredits(AppDialogPresenter settingsPresenter) {
++        List<OptionItem> credits = new ArrayList<>();
++
++        credits.add(UiOptionItem.from("NovaTube \u2014 \u00e9dition Rappace",
++                option -> Utils.openLink(getContext(), Utils.toQrCodeLink("https://github.com/RappaceFer/NovaTube"))));
++        credits.add(UiOptionItem.from("Bas\u00e9 sur SmartTube de Yuriy Liskov (logiciel libre)",
++                option -> Utils.openLink(getContext(), Utils.toQrCodeLink("https://github.com/yuliskov/SmartTube"))));
++        credits.add(UiOptionItem.from("Compil\u00e9 depuis le code source \u00b7 sans publicit\u00e9 \u00b7 sans mise \u00e0 jour automatique",
++                option -> Utils.openLink(getContext(), Utils.toQrCodeLink("https://github.com/RappaceFer/NovaTube"))));
++
++        settingsPresenter.appendStringsCategory("NovaTube", credits);
++    }
++
+     private void appendAutoUpdateSwitch(AppDialogPresenter settingsPresenter) {
+         GeneralData generalData = GeneralData.instance(getContext());
+         List<OptionItem> items = new ArrayList<>();
+diff --git a/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/prefs/MainUIData.java b/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/prefs/MainUIData.java
+index 8ad0b5205..f1521d9d8 100644
+--- a/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/prefs/MainUIData.java
++++ b/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/prefs/MainUIData.java
+@@ -431,7 +431,8 @@ public class MainUIData extends DataChangeBase implements ProfileChangeListener
+         //mIsCardAnimatedPreviewsEnabled = Helpers.parseBoolean(split, 0, true);
+         mVideoGridScale = Helpers.parseFloat(split, 1, 1.0f); // 4 cards in a row
+         mUIScale = Helpers.parseFloat(split, 2, 1.0f);
+-        mColorSchemeIndex = Helpers.parseInt(split, 3, 1);
++        // NovaTube: the first color scheme (NovaTube look) is the default one
++        mColorSchemeIndex = Helpers.parseInt(split, 3, 0);
+         mIsCardMultilineTitleEnabled = Helpers.parseBoolean(split, 4, true);
+         mChannelCategorySorting = Helpers.parseInt(split, 5, CHANNEL_SORTING_LAST_VIEWED);
+         mPlaylistsStyle = Helpers.parseInt(split, 6, PLAYLISTS_STYLE_GRID);

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Nom du thème par défaut dans Réglages → Interface → Thème -->
+    <string name="color_scheme_teal">NovaTube</string>
+    <string name="color_scheme_teal_oled">NovaTube (OLED)</string>
+</resources>

@@ -1,0 +1,6 @@
+*.jks
+*.keystore
+keystore.properties
+mot-de-passe*
+cle-de-signature/
+src/

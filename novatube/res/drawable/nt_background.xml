@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NovaTube : fond « ciel de nuit » de NovaTV (bleu nuit + halos bleu et violet) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:angle="315" android:startColor="#0B1026" android:endColor="#060914" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:type="radial" android:centerX="0.86" android:centerY="0.0"
+                android:gradientRadius="720dp" android:startColor="#4A3D5ADC" android:endColor="#00060914" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:type="radial" android:centerX="0.02" android:centerY="1.05"
+                android:gradientRadius="560dp" android:startColor="#3A9646C8" android:endColor="#00060914" />
+        </shape>
+    </item>
+</layer-list>
