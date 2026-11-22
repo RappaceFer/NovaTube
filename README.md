@@ -20,6 +20,8 @@ https://github.com/RappaceFer/NovaTube/raw/main/release/NovaTube.apk
   (le mot de passe ne passe jamais par l'appli).
 - **Thème NovaTube** : fond « ciel de nuit » bleu nuit de NovaTV, accents violets, barre de lecture rose,
   logo et icône dans le style NovaTV.
+- **Smartphone en portrait** : interface mise à l'échelle automatiquement, menu latéral plus étroit,
+  la vidéo s'ouvre en plein écran paysage et l'appli revient en portrait à la sortie (Fire TV inchangée).
 - **Sûre** : compilée ici depuis le code source, sans les APK ni les bibliothèques précompilées du développeur
   d'origine (aucune trace de `libalphasdk.so`, le logiciel espion de l'incident SmartTube de novembre 2025),
   **sans mise à jour automatique** et sans téléchargement d'APK externe. Signée avec la clé Rappace
@@ -34,7 +36,7 @@ variante F-Droid, + une surcouche NovaTube :
 | Dossier | Rôle |
 |---|---|
 | `novatube/res/` | couleurs, styles, fond, icônes, bannière TV, logo |
-| `novatube/patches/` | À propos « NovaTube — édition Rappace », thème NovaTube par défaut, aucun APK externe |
+| `novatube/patches/` | À propos « NovaTube — édition Rappace », thème NovaTube par défaut, aucun APK externe, mode portrait sur smartphone |
 | `novatube/outils/art.py` | dessine l'icône, la bannière et le logo (Python + Pillow, police Inter Display) |
 | `novatube/construire.ps1` | télécharge SmartTube, applique la surcouche, compile, signe et vérifie l'APK |
 

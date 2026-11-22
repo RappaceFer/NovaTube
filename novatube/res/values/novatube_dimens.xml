@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NovaTube : largeur du menu lateral, identique a la valeur d'origine (Fire TV inchangee). -->
+<resources>
+    <dimen name="lb_browse_headers_width">270dp</dimen>
+</resources>

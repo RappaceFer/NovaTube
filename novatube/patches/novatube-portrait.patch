@@ -1,0 +1,44 @@
+diff --git a/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/misc/MotherActivity.java b/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/misc/MotherActivity.java
+index db238d593..4d906c466 100644
+--- a/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/misc/MotherActivity.java
++++ b/common/src/main/java/com/liskovsoft/smartyoutubetv2/common/misc/MotherActivity.java
+@@ -42,6 +42,16 @@ public class MotherActivity extends FragmentActivity {
+     private static final float DEFAULT_DENSITY = 2.0f; // xhdpi
+     private static final float DEFAULT_WIDTH = 1920f; // xhdpi
+     private static DisplayMetrics sCachedDisplayMetrics;
++    private static final float NOVATUBE_PHONE_WIDTH_DP = 600f;
++
++    /**
++     * NovaTube : vrai pour un telephone ou une tablette (ecran tactile, pas en mode TV).
++     */
++    public static boolean isNovaTubePhone(Context context) {
++        android.app.UiModeManager uiMode = (android.app.UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
++        boolean isTV = uiMode != null && uiMode.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
++        return !isTV && context.getPackageManager().hasSystemFeature(android.content.pm.PackageManager.FEATURE_TOUCHSCREEN);
++    }
+     protected static boolean sIsInPipMode;
+     private ScreensaverManager mScreensaverManager;
+     // Make static in case Don't keep activities enabled in Developer settings
+@@ -93,6 +103,9 @@ public class MotherActivity extends FragmentActivity {
+ 
+         if (mIsOculusQuestFixEnabled && VERSION.SDK_INT != 26) {
+             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
++        } else if (VERSION.SDK_INT != 26 && isNovaTubePhone(this) && "PlaybackActivity".equals(getClass().getSimpleName())) {
++            // NovaTube : sur telephone, la video s'ouvre en paysage plein ecran (retour en portrait a la sortie)
++            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+         }
+ 
+         mScreensaverManager = new ScreensaverManager(this); // moved below the theme to fix side effects
+@@ -273,6 +286,12 @@ public class MotherActivity extends FragmentActivity {
+             int widthPixels = Math.max(displayMetrics.widthPixels, displayMetrics.heightPixels);
+             float widthRatio = DEFAULT_WIDTH / widthPixels;
+             float density = DEFAULT_DENSITY / widthRatio * uiScale;
++            if (isNovaTubePhone(context)) {
++                // NovaTube : sur telephone/tablette, l'interface est calee sur le PETIT cote de l'ecran (~600 dp),
++                // utilisable en portrait comme en paysage. Fire TV / Android TV : calcul d'origine inchange.
++                int shortSide = Math.min(displayMetrics.widthPixels, displayMetrics.heightPixels);
++                density = shortSide / NOVATUBE_PHONE_WIDTH_DP * uiScale;
++            }
+             displayMetrics.density = density;
+             displayMetrics.scaledDensity = density;
+             sCachedDisplayMetrics = displayMetrics;
