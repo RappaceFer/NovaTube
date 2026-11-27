@@ -13,6 +13,15 @@ Dans **Downloader** sur la Fire TV (ou dans le navigateur du téléphone) :
 https://github.com/RappaceFer/NovaTube/raw/main/release/NovaTube.apk
 ```
 
+### Variante : NovaTube Web (essai)
+
+La version télé du site YouTube (`youtube.com/tv`), dans le moteur de Firefox (GeckoView) avec
+**uBlock Origin** intégré, pilotable à la télécommande. Sources dans `web/`.
+
+```
+https://github.com/RappaceFer/NovaTube/raw/main/release/NovaTube-Web.apk
+```
+
 ## Ce que fait NovaTube
 
 - **Aucune publicité**, et saut automatique des passages sponsorisés (SponsorBlock).
